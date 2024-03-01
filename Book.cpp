@@ -185,38 +185,6 @@ Date: 02/22/2024
 
     void Book::setISBN(long long int ISBN)
     {
-        std::vector<int> isbn_;
-    // Validate ISBN length (should be 10 digits)
-        if (std::to_string(ISBN).length() != 10) 
-        {
-            throw std::invalid_argument("Invalid ISBN format (must be 10 digits)");
-        }
-
-        // Extract the last 80 digits of the ISBN as a string
-        std::string icon_digits = std::to_string(ISBN).substr(5); // Assuming 10-digit ISBN with first 5 digits for other info
-
-        // Validate each digit and store the valid ones in a vector
-        std::vector<int> valid_digits;
-        for (char digit_char : icon_digits) 
-        {
-            int digit = digit_char - '0'; // Convert character to integer
-            if (digit >= 0 && digit <= 255) 
-            {
-            valid_digits.push_back(digit);
-            } else 
-            {
-            throw std::invalid_argument("Invalid icon bitmap digit: " + std::to_string(digit));
-            }
-        }  
-
-        if (valid_digits.size() != 80) 
-        {
-            throw std::invalid_argument("Not enough valid icon bitmap digits");
-        }
-    // Assign the valid digits to the isbn_ member variable (assuming it's a vector<int>)
-        isbn_ = valid_digits;
-
-    // Store the ISBN
         ISBN_ = ISBN;
     }
 
@@ -267,7 +235,7 @@ Date: 02/22/2024
 
     void Book::setKeywords(const std::vector<std::string>& keywords)
     {
-        keywords_=keywords;
+        this->keywords_ = keywords;
     }
 
     /**
@@ -289,11 +257,15 @@ Date: 02/22/2024
         std::cout << "Author: " << author_ << "\n";
         std::cout << "ISBN: " << ISBN_ << "\n";
         std::string icon;
-        int *icon_ptr = icon_;
-        for(int i =0; i<80; i++)
-        {
-            icon += std::to_string(*icon_ptr) + " ";
-            icon_ptr++;
+        for (int i = 0; i < 80; ++i) {
+        // Check if index is within bounds to avoid accessing out-of-range elements
+        if (i < icon.size()) {
+            icon += std::to_string(icon[i]) + " ";
+        }
+        }
+        // Remove trailing space if necessary (assuming the loop added at least one element)
+        if (!icon.empty()) {
+        icon = icon.substr(0, icon.size() - 1);
         }
 
         icon= icon.substr(0, icon.size() - 1);
@@ -308,4 +280,5 @@ Date: 02/22/2024
         keywords = keywords.substr(0, keywords.size() - 2);
         std::cout << "Keywords: "<< keywords << "\n";
         std::cout << "Blurb: " << blurb_ << std::endl;
-}
+
+    }
