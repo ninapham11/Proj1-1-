@@ -250,20 +250,7 @@ Date: 02/22/2024
         std::cout << "Title: " << title_ << "\n";
         std::cout << "Author: " << author_ << "\n";
         std::cout << "ISBN: " << ISBN_ << "\n";
-        std::string icon;
-        for (int i = 0; i < 80; ++i) {
-        // Check if index is within bounds to avoid accessing out-of-range elements
-        if (i < icon.size()) {
-            icon += std::to_string(icon[i]) + " ";
-        }
-        }
-        // Remove trailing space if necessary (assuming the loop added at least one element)
-        if (!icon.empty()) {
-        icon = icon.substr(0, icon.size() - 1);
-        }
-
-        icon= icon.substr(0, icon.size() - 1);
-        std::cout << "Icon: " << icon << std::endl;
+        std::cout << "Icon: " << icon_ << std::endl;
         std::cout << "Price: $" << this->getPrice() << std::endl;
 
         std::string keywords;      
