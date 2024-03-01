@@ -1,6 +1,6 @@
 #include "Book.hpp"
 #include <memory>  // For std::unique_ptr
-#include <stdexcept> // For std::invalid_argument
+#include <utility> // For std::invalid_argument
 /*
 CSCI335 Spring 2024
 Assignment 1 – Move Semantics 
@@ -201,8 +201,15 @@ Date: 02/22/2024
 
     void Book::setIcon(int* icon)
     {
-        icon_=icon;
+    // Copy the icon data if valid
+    std::unique_ptr<int[]> icon_copy(new int[80]);
+    std::copy(icon, icon + 80, icon_copy.get());
+
+    // Take ownership of the copied data
+    icon_ = icon;
+    
     }
+    
 
     
     /**
