@@ -15,10 +15,11 @@ Date: 02/22/2024
 // Hint: you need a const iterator for a const vector, but this will be automatically handled using "auto".
 
 void moveAll (const std::string keyword, std::vector<Book> &source, std::vector<Book> &dest)
+
 {
   const auto t1_start = std::chrono::steady_clock::now();
   int books_moved=0; // counts books moved
-/*
+
  //Use a for loop with an iterator it to traverse the source vector.
   for (auto it = source.begin(); it != source.end();) { // Use iterator for efficient removal
     if (std::find(it->getKeywords().begin(), it->getKeywords().end(), keyword) != it->getKeywords().end()) {
@@ -30,7 +31,6 @@ void moveAll (const std::string keyword, std::vector<Book> &source, std::vector<
       ++it; // Move to the next element in source
     }
   }
-  */
 
   const auto t1_end = std::chrono::steady_clock::now();
   int t1 = std::chrono::duration <double, std::micro> (t1_end - t1_start).count();
