@@ -251,7 +251,7 @@ Date: 02/22/2024
         std::cout << "Title: " << title_ << "\n";
         std::cout << "Author: " << author_ << "\n";
         std::cout << "ISBN: " << ISBN_ << "\n";
-        std::cout << "Icon: " << icon_* << std::endl;
+        std::cout << "Icon: " << icon_ << std::endl;
         std::cout << "Price: $" << this->getPrice() << std::endl;
 
         std::string keywords;      
