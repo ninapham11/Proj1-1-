@@ -201,13 +201,12 @@ Date: 02/22/2024
 
     void Book::setIcon(int* icon)
     {
-    // Copy the icon data if valid
+    // Create a unique_ptr to hold a copy of the icon data
     std::unique_ptr<int[]> icon_copy(new int[80]);
     std::copy(icon, icon + 80, icon_copy.get());
 
-    // Take ownership of the copied data
     icon_ = icon;
-    
+
     }
     
 
@@ -258,8 +257,16 @@ Date: 02/22/2024
     {
         std::cout << "Title: " << title_ << "\n";
         std::cout << "Author: " << author_ << "\n";
-        std::cout << "ISBN: " << ISBN_ << "\n";
-        std::cout << "Icon: " << this->getIcon() << std::endl;
+        std::cout << "ISBN: " << ISBN_ << "\n"; 
+
+
+        std::cout << "Icon: ";// use for loop to print
+
+        for (int i=0; i<80; i++)
+        {
+            std::cout<< "\n";
+        }
+        
         std::cout << "Price: $" << this->getPrice() << std::endl;
 
         std::string keywords;      
