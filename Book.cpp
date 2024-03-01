@@ -200,14 +200,7 @@ Date: 02/22/2024
 
     void Book::setIcon(int* icon)
     {
-        // Move the ownership of the provided icon data to the member variable
-        icon_ = std::move(icon);
-
-        // If the icon is null, set the icon pointer to null to avoid dangling pointer issues
-        if (icon_ == nullptr) 
-        {
-            icon_ = nullptr;
-        }
+        icon_=icon;
     }
 
     /**
