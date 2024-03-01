@@ -200,10 +200,10 @@ Date: 02/22/2024
 
     void Book::setIcon(int* icon)
     {
-        this->icon_= icon;
-
+        icon_=icon;
     }
 
+    
     /**
         @return : the book price
     */
