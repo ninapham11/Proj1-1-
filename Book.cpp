@@ -1,5 +1,6 @@
 #include "Book.hpp"
-
+#include <memory>  // For std::unique_ptr
+#include <stdexcept> // For std::invalid_argument
 /*
 CSCI335 Spring 2024
 Assignment 1 – Move Semantics 
@@ -251,7 +252,7 @@ Date: 02/22/2024
         std::cout << "Title: " << title_ << "\n";
         std::cout << "Author: " << author_ << "\n";
         std::cout << "ISBN: " << ISBN_ << "\n";
-        std::cout << "Icon: " << icon_ << std::endl;
+        std::cout << "Icon: " << this->getIcon() << std::endl;
         std::cout << "Price: $" << this->getPrice() << std::endl;
 
         std::string keywords;      
