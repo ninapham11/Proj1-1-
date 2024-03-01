@@ -200,7 +200,8 @@ Date: 02/22/2024
 
     void Book::setIcon(int* icon)
     {
-        icon_=icon;
+        this->icon_= icon;
+
     }
 
     /**
