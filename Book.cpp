@@ -1,6 +1,6 @@
 #include "Book.hpp"
 #include <memory>  // For std::unique_ptr
-#include <utility> // For std::invalid_argument
+#include <utility> 
 /*
 CSCI335 Spring 2024
 Assignment 1 – Move Semantics 
@@ -29,12 +29,8 @@ Date: 02/22/2024
     Book::~Book()
     {
     // Deallocate dynamically allocated memory if necessary
-        if (icon_ != nullptr) 
-        {
-            delete[] icon_; 
-            icon_ = nullptr;
-        }
-
+ 
+        delete[] icon_; 
         keywords_.clear();
 
     }
