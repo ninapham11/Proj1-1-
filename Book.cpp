@@ -27,7 +27,14 @@ Date: 02/22/2024
 
     /** @post : Destroy the Book object */
     Book::~Book()
-    { 
+    {
+    // Deallocate dynamically allocated memory if necessary
+        if (icon_ != nullptr) 
+        {
+            delete[] icon_; 
+            icon_ = nullptr;
+        }
+
         keywords_.clear();
 
     }
