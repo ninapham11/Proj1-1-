@@ -28,6 +28,7 @@ Date: 02/22/2024
     /** @post : Destroy the Book object */
     Book::~Book()
     {
+
     // Deallocate dynamically allocated memory if necessary
         if (icon_ != nullptr) 
         {
@@ -201,8 +202,7 @@ Date: 02/22/2024
 
     void Book::setIcon(int* icon)
     {
-    icon_ = icon;
-
+        icon_ = icon;
     }
 
     
@@ -254,14 +254,12 @@ Date: 02/22/2024
         std::cout << "Author: " << author_ << "\n";
         std::cout << "ISBN: " << ISBN_ << "\n"; 
 
-
         std::cout << "Icon: ";// use for loop to print
-
         for (int i=0; i<80; i++)
+        
         {
-            std::cout<< "\n";
+            std::cout<< i << " "<< "\n";
         }
-
         std::cout << "Price: $" << this->getPrice() << std::endl;
 
         std::string keywords;      
