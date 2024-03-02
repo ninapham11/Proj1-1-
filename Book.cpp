@@ -1,6 +1,5 @@
 #include "Book.hpp"
-#include <memory>  // For std::unique_ptr
-#include <utility> 
+
 /*
 CSCI335 Spring 2024
 Assignment 1 – Move Semantics 
@@ -209,7 +208,25 @@ Date: 02/22/2024
     */
     void Book::setIcon(int* icon)
     {
-        icon_ = icon;
+        if (!icon) {
+            throw std::invalid_argument("Invalid icon: pointer cannot be null.");
+        }
+
+        if (*icon != 80) {
+            throw std::invalid_argument("Invalid icon: expected 80 integers.");
+        }
+
+        for (int i = 0; i < 80; ++i) 
+        {
+            if (icon[i] < 0 || icon[i] > 255) 
+            {
+                throw std::invalid_argument("Invalid icon value: must be between 0 and 255.");
+            }
+        }
+
+        // Copy the icon data (assumes caller takes responsibility for managing memory)
+        icon_ = new int[80];
+        std::copy(icon, icon + 80, icon_);
     }
     
     /**
@@ -274,22 +291,26 @@ Date: 02/22/2024
         std::cout << "ISBN: " << ISBN_ << "\n"; 
         std::string icon;
         int *iconptr = icon_;
+        //Creates a pointer named iconptr that points to the first element of the integer array managed by icon_.
         for (int i=0; i<80; i++)
         {
+            //Dereferences iconptr to access the current integer value
             icon+= std::to_string(*iconptr) + " ";
             iconptr++;
-
         }
+        // Extracts a substring from icon, starting from index 0 (the beginning) and ending at the second-to-last character
         icon= icon.substr(0, icon.size()-1);
         std::cout << "Icon: "<< icon << std::endl;
         std::cout << "Price: $" << this->getPrice() << std::endl;
+        //Declares an empty string variable named keywords to store the concatenated keyword string.
         std::string keywords;      
+        //points to the beginning of the keywords container 
         for (auto kw = this-> getKeywords().begin(); kw != this->getKeywords().end(); kw++)
         {
+            //Dereferences kw to access the current keyword and increments kw 
             keywords += (*kw + ", ");
         }
         keywords = keywords.substr(0, keywords.size() - 2);
         std::cout << "Keywords: "<< keywords << "\n";
         std::cout << "Blurb: " << blurb_ << std::endl;
-
     }
