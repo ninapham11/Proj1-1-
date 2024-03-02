@@ -28,7 +28,6 @@ Date: 02/22/2024
     /** @post : Destroy the Book object */
     Book::~Book()
     {
-
     // Deallocate dynamically allocated memory if necessary
         if (icon_ != nullptr) 
         {
@@ -37,6 +36,7 @@ Date: 02/22/2024
         }
 
         keywords_.clear();
+        // clears keyword
 
     }
 
@@ -184,27 +184,33 @@ Date: 02/22/2024
         return ISBN_;
 
     }
-
+    
+    /**
+   @param  : the ISBN of the Book
+   @post   : sets the ISBN to the value of the parameter
+    */
     void Book::setISBN(long long int ISBN)
     {
         ISBN_ = ISBN;
     }
 
-
     /**
-        @return : the keywords
+        @return : the icons
     */
     const int* Book::getIcon() const
     {
         return icon_;
 
     }
-
+    
+    /**
+   @param  : the icon of the Book
+   @post   : sets the icon to the value of the parameter
+    */
     void Book::setIcon(int* icon)
     {
         icon_ = icon;
     }
-
     
     /**
         @return : the book price
@@ -214,6 +220,10 @@ Date: 02/22/2024
         return price_;
     }
 
+    /**
+   @param  : the price of the Book
+   @post   : sets the price to the value of the parameter
+    */
     void Book::setPrice(float price) 
     {
         price_ = price;
@@ -229,6 +239,10 @@ Date: 02/22/2024
         return keywords_;
     }
 
+    /**
+   @param  : the keywords of the Book
+   @post   : sets the keywords to the value of the parameter
+    */
     void Book::setKeywords(const std::vector<std::string>& keywords)
     {
         this->keywords_ = keywords;
@@ -242,26 +256,33 @@ Date: 02/22/2024
         return blurb_;
     }
 
+    /**
+   @param  : the blurb of the Book
+   @post   : sets the blurb to the value of the parameter
+    */
     void Book::setBlurb(const std::string& blurb)
     {
         blurb_=blurb;
     }
 
+    /* print function in the format of text file*/
     void Book::print() const
 
     {
         std::cout << "Title: " << title_ << "\n";
         std::cout << "Author: " << author_ << "\n";
         std::cout << "ISBN: " << ISBN_ << "\n"; 
-
-        std::cout << "Icon: ";// use for loop to print
+        std::string icon;
+        int *iconptr = icon_;
         for (int i=0; i<80; i++)
-    
         {
-            std::cout<< "\n";
-        }
-        std::cout << "Price: $" << this->getPrice() << std::endl;
+            icon+= std::to_string(*iconptr) + " ";
+            iconptr++;
 
+        }
+        icon= icon.substr(0, icon.size()-1);
+        std::cout << "Icon: "<< icon << std::endl;
+        std::cout << "Price: $" << this->getPrice() << std::endl;
         std::string keywords;      
         for (auto kw = this-> getKeywords().begin(); kw != this->getKeywords().end(); kw++)
         {
