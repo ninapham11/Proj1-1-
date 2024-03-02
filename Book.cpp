@@ -201,14 +201,9 @@ Date: 02/22/2024
 
     void Book::setIcon(int* icon)
     {
-    // Create a unique_ptr to hold a copy of the icon data
-    std::unique_ptr<int[]> icon_copy(new int[80]);
-    std::copy(icon, icon + 80, icon_copy.get());
-
     icon_ = icon;
 
     }
-    
 
     
     /**
@@ -266,7 +261,7 @@ Date: 02/22/2024
         {
             std::cout<< "\n";
         }
-        
+
         std::cout << "Price: $" << this->getPrice() << std::endl;
 
         std::string keywords;      
