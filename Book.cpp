@@ -256,9 +256,9 @@ Date: 02/22/2024
 
         std::cout << "Icon: ";// use for loop to print
         for (int i=0; i<80; i++)
-        
+    
         {
-            std::cout<< i << " "<< "\n";
+            std::cout<< "\n";
         }
         std::cout << "Price: $" << this->getPrice() << std::endl;
 
